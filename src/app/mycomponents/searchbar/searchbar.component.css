@@ -1,0 +1,33 @@
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #8e44ad; /* Dark purple button color */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #673ab7; /* Lighter purple on hover */
+}
+
+
+/* Font Awesome for the search icon */
+.fa-search {
+  color: white;
+}

@@ -1,0 +1,37 @@
+<div class="radio-container">
+    <input type="radio" id="allProducts" name="productType" class="radio-button" checked (click) = "selectProducts('all')">
+    <label for="allProducts" class="radio-label">All Products</label>
+
+    <input type="radio" id="freeProducts" name="productType" class="radio-button" (click) = "selectProducts('free')">
+    <label for="freeProducts" class="radio-label">Free</label>
+
+    <input type="radio" id="premiumProducts" name="productType" class="radio-button" (click) = "selectProducts('prem')">
+    <label for="premiumProducts" class="radio-label">Premium</label>
+</div>
+
+<div class="product-container" >
+    <!-- Product 1 -->
+    <div class="product-card" *ngFor = "let product of products" [ngStyle] = "{backgroundColor : (type === 'free' && product.type === 'free') || (type === 'prem' && product.type === 'premium') ? '#F7DC6F' : 'white'}">
+        <img [src]='product.url' alt={{product.url}} class="product-image" >
+        <div class="product-title"  >{{product.name}}</div>
+        <div class="product-price">
+            <label for="pp">Price: </label>
+            <span id="pp">${{product.price}}</span>
+        </div>
+        <div class="product-discount" *ngIf ="product.type !== 'free' else elseblock">
+            <label for="dd" [ngStyle] = "{color : 'black'}">Discount: </label>
+            <span id="dd">${{product.discount}}</span> 
+        </div>
+        <ng-template #elseblock >
+            <div class="product-discount">
+                <label for="ed" [ngStyle] = "{color : 'black'}">Discount: </label>
+                <span id="ed">{{'100%'}}</span> 
+            </div>
+        </ng-template>
+        <div [ngStyle]="{color : product.type === 'free' ? 'Green' : '#8B8000', fontWeight: 'bolder'}">{{product.type}}</div>
+        <div class="product-description">{{product.description}}..Read more</div>
+        
+    </div>
+    <!-- Add more product cards for other products as needed -->
+
+</div>
