@@ -1,22 +1,15 @@
-<div class="radio-container">
-    <input type="radio" id="allProducts" name="productType" class="radio-button" checked (click) = "selectProducts('all')">
-    <label for="allProducts" class="radio-label">All Products</label>
+<app-product-list [all] = "allProducts()" [free] = "freeProducts()" [prem] = "premiumProducts()" (filter) = "filterProducts($event)"></app-product-list>
 
-    <input type="radio" id="freeProducts" name="productType" class="radio-button" (click) = "selectProducts('free')">
-    <label for="freeProducts" class="radio-label">Free</label>
-
-    <input type="radio" id="premiumProducts" name="productType" class="radio-button" (click) = "selectProducts('prem')">
-    <label for="premiumProducts" class="radio-label">Premium</label>
-</div>
 
 <div class="product-container" >
     <!-- Product 1 -->
-    <div class="product-card" *ngFor = "let product of products" [ngStyle] = "{backgroundColor : (type === 'free' && product.type === 'free') || (type === 'prem' && product.type === 'premium') ? '#F7DC6F' : 'white'}">
+    <div class="product-card" *ngFor = "let product of productstoshow" [ngStyle] = "{backgroundColor 
+        : (type === 'free' && product.type === 'free') || (type === 'prem' && product.type === 'premium') ? '#F7DC6F' : 'white'}">
         <img [src]='product.url' alt={{product.url}} class="product-image" >
         <div class="product-title"  >{{product.name}}</div>
         <div class="product-price">
             <label for="pp">Price: </label>
-            <span id="pp">${{product.price}}</span>
+            <span id="pp" [ngClass] = "{noprice : product.type === 'free'}">${{product.price}}</span>
         </div>
         <div class="product-discount" *ngIf ="product.type !== 'free' else elseblock">
             <label for="dd" [ngStyle] = "{color : 'black'}">Discount: </label>

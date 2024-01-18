@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { Product } from '../../product';
 import { NgFor } from '@angular/common';
 import { NgStyle } from '@angular/common';
-import { NgIf } from '@angular/common';
+import { NgIf, NgClass } from '@angular/common';
+import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [NgFor, NgStyle, NgIf],
+  imports: [NgFor, NgStyle, NgIf, ProductListComponent, NgClass],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -25,7 +26,7 @@ export class ProductsComponent {
         {
           id: 2,
           name: "Product 2",
-          type: "free",
+          type: "premium",
           price: 29.99,
           discount: 10,
           description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -164,5 +165,26 @@ export class ProductsComponent {
 
       selectProducts(temp : string){
         this.type = temp;
+      }
+
+      allProducts(){
+        return this.products.length;
+      }
+
+      freeProducts(){
+        return this.products.filter(product => product.type === 'free').length;
+      }
+
+      premiumProducts(){
+        return this.products.filter(product => product.type === 'premium').length;
+      }
+
+      productstoshow : Product[] = this.products;
+      productType :  string = 'all';
+      filterProducts(type : string){
+       this.productType = type;
+       if(this.productType == 'all')this.productstoshow = this.products;
+       else if(this.productType == 'free')this.productstoshow = this.products.filter(item => item.type == 'free');
+       else if(this.productType == 'premium')this.productstoshow = this.products.filter(item => item.type == 'premium');
       }
 }

@@ -48,25 +48,3 @@
     margin-top: 10px;
 }
 
-.radio-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-    color : white;
-    font-size: larger;
-    font-weight: bolder;
-}
-
-/* Style for the radio buttons */
-.radio-button {
-    margin: 10px;
-    font-size: 16px;
-}
-
-/* Style for the labels */
-.radio-label {
-    margin-left: 5px;
-    font-size: 14px;
-}
